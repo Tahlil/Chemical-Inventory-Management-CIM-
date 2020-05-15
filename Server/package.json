@@ -4,6 +4,7 @@
   "description": "Chemical Inventory Management",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tahlil",
@@ -11,5 +12,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongoose": "^5.9.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
