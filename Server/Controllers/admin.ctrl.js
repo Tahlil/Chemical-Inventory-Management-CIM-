@@ -76,7 +76,7 @@ exports.login = (req, res) => {
 };
 
 exports.approve = (req, res) => {
-  ApproveReq.updateOne({username: req.body.username }, { isApproved: True }, function(
+  ApproveReq.updateOne({username: req.body.username }, { isApproved: true }, function(
     err,
     result
   ) {
