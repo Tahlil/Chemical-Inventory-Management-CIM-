@@ -41,7 +41,7 @@ exports.register = (req, res) => {
     };
 
     User = getUser(userType)
-    user = new User(getInfo)
+    user = new User(userInfo)
     // Save user in the database
     user
       .save(user)
