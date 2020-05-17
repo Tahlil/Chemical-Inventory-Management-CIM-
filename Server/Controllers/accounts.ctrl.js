@@ -32,26 +32,27 @@ exports.register = (req, res) => {
 
   const userType = req.body.userType;
   // Create a user
-  
-    let user, userInfo = {
-      username: req.body.username,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      position: req.body.position,
-      passwordHash: req.body.password
-    };
+  let user, userInfo = {
+    username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    position: req.body.position,
+    passwordHash: req.body.password
+  };
 
-    User = getUser(userType)
-    user = new User(userInfo)
-    // Save user in the database
-    user
-      .save(user)
-      .then(data => {
-        res.status(200).send({error: false});
-      })
-      .catch(err => {
-        res.status(500).send(getError(err.message || "Some error occurred while registering user."));
+  User = getUser(userType)
+  user = new User(userInfo)
+  // Save user in the database
+  user
+    .save(user)
+    .then(data => {
+      res.status(200).send({
+        error: false
       });
+    })
+    .catch(err => {
+      res.status(500).send(getError(err.message || "Some error occurred while registering user."));
+    });
 };
 
 exports.login = (req, res) => {
@@ -67,20 +68,21 @@ exports.login = (req, res) => {
       "username": req.body.username
     },
     function (err, user) {
-      if (err){
+      if (err) {
         res.send(getError(err.message || "Error occured."));
         return;
       }
-      if(user){
+      if (user) {
         bcrypt.compare(req.body.password, user.passwordHash, function (err, res) {
           if (res == true) {
-            res.status(200).send({error: false});
+            res.status(200).send({
+              error: false
+            });
           } else {
             res.send(getError("Incorrect password."));
           }
         });
-      }
-      else{
+      } else {
         res.send(getError("Username not found."));
       }
     });
@@ -105,7 +107,9 @@ exports.requestApproval = (req, res) => {
     approveReq
       .save(approveReq)
       .then(data => {
-        res.status(200).send({error: false});
+        res.status(200).send({
+          error: false
+        });
       })
       .catch(err => {
         res.status(500).send(getError(err.message || "Some error occurred while saving approval request."));
@@ -115,14 +119,20 @@ exports.requestApproval = (req, res) => {
 
 exports.checkUsername = (req, res) => {
   User = getUser(req.body.userType)
-  User.findOne({username: req.body.username}, function(err, user){
-    if(err) {
+  User.findOne({
+    username: req.body.username
+  }, function (err, user) {
+    if (err) {
       res.send(getError(err.message || "Error checking username."));
     }
-    if(user) {
-      res.send({userExist: true})
+    if (user) {
+      res.send({
+        userExist: true
+      })
     } else {
-      res.send({userExist: false})
+      res.send({
+        userExist: false
+      })
     }
-});
+  });
 }

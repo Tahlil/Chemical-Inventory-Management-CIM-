@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt'); //Importing the NPM bcrypt package.
 const saltRounds = 11;
 const Admin = require("../Models/models.index").admin;
 const ApproveReq = require("../Models/models.index").approveReq;
-const incorrectPrimaryInfo = req => !req.body.username || !req.body.password 
+const incorrectPrimaryInfo = req => !req.body.username || !req.body.password
 const incorrectSecondaryInfo = req => !req.body.firstName || !req.body.lastName || !req.body.position
 const getError = errMessage => ({
   error: true,
@@ -58,7 +58,7 @@ exports.login = (req, res) => {
         res.send(getError(err.message || "Error occured."));
         return;
       }
-      if(admin){
+      if (admin) {
         bcrypt.compare(req.body.password, admin.passwordHash, function (err, res) {
           if (res == true) {
             res.status(200).send({
@@ -68,31 +68,52 @@ exports.login = (req, res) => {
             res.send(getError("Incorrect password."));
           }
         });
-      }
-      else{
+      } else {
         res.send(getError("Username not found."));
       }
-      
+
     });
 };
 
 exports.approve = (req, res) => {
-  
+  ApproveReq.updateOne({username: req.body.username }, { isApproved: True }, function(
+    err,
+    result
+  ) {
+    if (err) {
+      res.send(getError(err.message || "Error approving user."));
+    } else {
+      console.log(result);  
+      res.status(200).send({error: false});
+    }
+  });
 }
 
-exports.getAllUnauthorized = (req, res) => {
-
+exports.getAllUnapproved = (req, res) => {
+  ApproveReq.find({})
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send(getError(err.message || "Some error occurred while retrieving users."));
+    });
 };
 
 exports.checkUsername = (req, res) => {
-  Admin.findOne({username: req.body.username}, function(err, admin){
-    if(err) {
+  Admin.findOne({
+    username: req.body.username
+  }, function (err, admin) {
+    if (err) {
       res.send(getError(err.message || "Error checking username."));
     }
-    if(admin) {
-      res.send({userExist: true})
+    if (admin) {
+      res.send({
+        userExist: true
+      })
     } else {
-      res.send({userExist: false})
+      res.send({
+        userExist: false
+      })
     }
-});
+  });
 }
