@@ -1,0 +1,1 @@
+const D = require("../models").tutorials;
