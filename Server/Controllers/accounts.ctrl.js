@@ -32,13 +32,13 @@ exports.register = (req, res) => {
 
   const userType = req.body.userType;
   // Create a user
-  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+  
     let user, userInfo = {
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       position: req.body.position,
-      passwordHash: hash
+      passwordHash: req.body.password
     };
 
     User = getUser(userType)
@@ -50,12 +50,8 @@ exports.register = (req, res) => {
         res.status(200).send({error: false});
       })
       .catch(err => {
-        res.status(500).send({
-          message: err.message || "Some error occurred while registering user."
-        });
+        res.status(500).send(getError(err.message || "Some error occurred while registering user."));
       });
-  });
-
 };
 
 exports.login = (req, res) => {
@@ -86,5 +82,28 @@ exports.login = (req, res) => {
 };
 
 exports.requestApproval = (req, res) => {
-  
+  if (incorrectPrimaryInfo(req) || incorrectSecondaryInfo(req)) {
+    res.status(400).send(getError("Invalid request"));
+    return;
+  }
+  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+    const approveReq = new ApproveReq({
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      position: req.body.position,
+      passwordHash: hash,
+      userType: req.body.userType,
+      isApproved: false
+    });
+    // Save approveReq in the database
+    approveReq
+      .save(approveReq)
+      .then(data => {
+        res.status(200).send({error: false});
+      })
+      .catch(err => {
+        res.status(500).send(getError(err.message || "Some error occurred while approving request."));
+      });
+  });
 }

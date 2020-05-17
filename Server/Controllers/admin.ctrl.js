@@ -19,15 +19,13 @@ exports.register = (req, res) => {
 
   // Create a admin
   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-    let admin, adminInfo = {
+    const admin = new Admin({
       username: req.body.username,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       position: req.body.position,
       passwordHash: hash
-    };
-
-    admin = new Admin(adminInfo)
+    })
     // Save user in the database
     admin
       .save(admin)
@@ -37,9 +35,7 @@ exports.register = (req, res) => {
         });
       })
       .catch(err => {
-        res.status(500).send({
-          message: err.message || "Some error occurred while registering user."
-        });
+        res.status(500).send(getError(err.message || "Some error occurred while registering user."));
       });
   });
 
