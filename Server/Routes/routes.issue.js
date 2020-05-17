@@ -1,4 +1,4 @@
-const IssueCtrl = require('../Controllers/account.controller');
+const IssueCtrl = require('../Controllers/issue.ctrl');
 const issueRouter = require('express').Router();
 
 issueRouter

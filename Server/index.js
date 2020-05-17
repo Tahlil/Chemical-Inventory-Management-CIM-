@@ -5,7 +5,7 @@ const port = 3000
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const db = require("./Models");
+const db = require("./Models/models.index");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,

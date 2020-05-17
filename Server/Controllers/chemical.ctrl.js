@@ -1,6 +1,6 @@
 const Chemical = require("../Models/models.index").chemical;
 const incorrectPrimaryInfo = req =>!req.body.casNumber || !req.body.quantity || !req.body.place
-const incorrectSecondaryInfo = !req.body.name || !req.body.sds || !req.body.unitType 
+const incorrectSecondaryInfo = req => !req.body.name || !req.body.sds || !req.body.unitType 
 
 function updateChemicalQuantity(req, changeValue){
   // Validate request

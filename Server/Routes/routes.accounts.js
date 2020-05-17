@@ -1,7 +1,6 @@
 
-const AccountCtrl = require('../Controllers/account.controller');
+const AccountCtrl = require('../Controllers/accounts.ctrl');
 
-const IssueCtrl = require('../Controllers/account.controller');
 const accountRouter = require('express').Router();
 
 accountRouter

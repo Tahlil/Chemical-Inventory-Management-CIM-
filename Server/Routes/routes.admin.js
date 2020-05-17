@@ -1,4 +1,4 @@
-const AdminCtrl = require('../Controllers/account.controller');
+const AdminCtrl = require('../Controllers/admin.ctrl');
 const adminRouter = require('express').Router();
 adminRouter
   .post('/account/register', AdminCtrl.register)

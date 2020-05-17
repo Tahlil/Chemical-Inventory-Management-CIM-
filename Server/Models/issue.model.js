@@ -1,6 +1,6 @@
 module.exports = mongoose => {
-  const Chemical = mongoose.model(
-    "chemical",
+  const Issue = mongoose.model(
+    "issue",
     mongoose.Schema(
       {
         name: { type: String, required: true },
@@ -14,5 +14,5 @@ module.exports = mongoose => {
       { timestamps: true }
     )
   );
-  return Chemical;
+  return Issue;
 };

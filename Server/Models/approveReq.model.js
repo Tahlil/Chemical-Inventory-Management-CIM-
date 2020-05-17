@@ -3,7 +3,7 @@ userModel.userType = { type: String, required: true }
 userModel.isApproved = { type: Boolean, required: true }
 module.exports = mongoose => {
   const ApproveReq = mongoose.model(
-    "admin",
+    "approveReq",
     mongoose.Schema(
       userModel,
       { timestamps: true }

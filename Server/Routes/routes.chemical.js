@@ -1,4 +1,4 @@
-const ChemicalCtrl = require('../Controllers/account.controller');
+const ChemicalCtrl = require('../Controllers/chemical.ctrl');
 const chemicalRouter = require('express').Router();
 chemicalRouter
   .post('/chemical/create', ChemicalCtrl.create)
