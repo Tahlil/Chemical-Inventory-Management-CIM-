@@ -46,6 +46,7 @@ exports.register = (req, res) => {
   user
     .save(user)
     .then(data => {
+      console.log("Registered: "+ userType); 
       res.status(200).send({
         error: false
       });
@@ -63,6 +64,7 @@ exports.login = (req, res) => {
     });
     return;
   }
+  const userType = req.body.userType;
   User = getUser(userType)
   User.findOne({
       "username": req.body.username
@@ -73,8 +75,10 @@ exports.login = (req, res) => {
         return;
       }
       if (user) {
-        bcrypt.compare(req.body.password, user.passwordHash, function (err, res) {
-          if (res == true) {
+        bcrypt.compare(req.body.password, user.passwordHash, function (err, result) {
+          if (result == true) {
+            console.log("Logged in as: " + userType);
+            
             res.status(200).send({
               error: false
             });

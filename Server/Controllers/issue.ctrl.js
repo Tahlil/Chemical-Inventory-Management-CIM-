@@ -1,5 +1,11 @@
 const Issue = require("../Models/models.index").issue;
-const incorrectInfo = req => req.body.name || req.body.casNumber || req.body.unitType || req.body.quantity || req.body.place || req.body.issuer || req.body.issuerPosition
+const incorrectInfo = req => !req.body.name || !req.body.casNumber || !req.body.unitType || !req.body.quantity || !req.body.place || !req.body.issuer || !req.body.issuerPosition
+
+const getError = errMessage => ({
+  error: true,
+  message: errMessage
+})
+
 exports.create = (req, res) => {
   // Validate request
   if (incorrectInfo(req)) {
@@ -11,7 +17,7 @@ exports.create = (req, res) => {
     name: req.body.name,
     casNumber: req.body.casNumber,
     unitType: req.body.unitType,
-    quantity: req.body.quantity,
+    quantity: parseInt(req.body.quantity),
     place: req.body.place,
     issuer: req.body.issuer,
     issuerPosition: req.body.issuerPosition
@@ -20,6 +26,8 @@ exports.create = (req, res) => {
   issue
     .save(issue)
     .then(data => {
+      console.log("Issue inserted.");
+      
       res.status(200).send({
         error: false
       });

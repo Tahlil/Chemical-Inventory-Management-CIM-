@@ -30,6 +30,8 @@ exports.register = (req, res) => {
     admin
       .save(admin)
       .then(data => {
+        console.log("Admin registered.");
+        
         res.status(200).send({
           error: false
         });
@@ -59,8 +61,9 @@ exports.login = (req, res) => {
         return;
       }
       if (admin) {
-        bcrypt.compare(req.body.password, admin.passwordHash, function (err, res) {
-          if (res == true) {
+        bcrypt.compare(req.body.password, admin.passwordHash, function (err, result) {
+          if (result == true) {
+            console.log("Admin logged in.");
             res.status(200).send({
               error: false
             });
@@ -83,8 +86,14 @@ exports.approve = (req, res) => {
     if (err) {
       res.send(getError(err.message || "Error approving user."));
     } else {
-      console.log(result);  
-      res.status(200).send({error: false});
+      if(result.n == 1){
+        console.log(result);  
+        res.status(200).send({error: false});
+      }
+      else{
+        res.send(getError("Username not found."));
+      }
+      
     }
   });
 }
