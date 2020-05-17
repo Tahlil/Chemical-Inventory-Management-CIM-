@@ -12,5 +12,6 @@ db.issue = require("./issue.model.js")(mongoose);
 db.guest = require("./guest.model.js")(mongoose);
 db.faculty = require("./faculty.model.js")(mongoose);
 db.storeInCharge = require("./storeInCharge.model.js")(mongoose);
+db.approveReq = require("./approveReq.model.js")(mongoose);
 
 module.exports = db;

@@ -3,6 +3,7 @@ const saltRounds = 11;
 const Guest = require("../Models/models.index").guest;
 const Faculty = require("../Models/models.index").faculty;
 const StoreInCharge = require("../Models/models.index").storeInCharge;
+const ApproveReq = require("../Models/models.index").approveReq;
 
 const incorrectPrimaryInfo = req => !req.body.userType || !req.body.username || !req.body.password || ["Guest", "Faculty", "Store in-charge"].indexOf(req.body.userType) == -1
 const incorrectSecondaryInfo = req => !req.body.firstName || !req.body.lastName || !req.body.position
@@ -83,3 +84,7 @@ exports.login = (req, res) => {
       });
     });
 };
+
+exports.requestApproval = (req, res) => {
+  
+}

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt'); //Importing the NPM bcrypt package.
 const saltRounds = 11;
 const admin = require("../Models/models.index").admin;
+const ApproveReq = require("../Models/models.index").approveReq;
 const incorrectPrimaryInfo = req => !req.body.username || !req.body.password 
 const incorrectSecondaryInfo = req => !req.body.firstName || !req.body.lastName || !req.body.position
 const getError = errMessage => ({
@@ -72,6 +73,11 @@ exports.login = (req, res) => {
       });
     });
 };
+
+exports.approve = (req, res) => {
+  
+}
+
 exports.getAllUnauthorized = (req, res) => {
 
 };
