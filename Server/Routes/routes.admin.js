@@ -5,5 +5,6 @@ adminRouter
   .post('/account/login', AdminCtrl.login)
   .post('/account/approve', AdminCtrl.approve)
   .get('/account/unauthorized', AdminCtrl.getAllUnauthorized)
+  .post('/account/checkUsername' ,AdminCtrl.checkUsername)
 
 module.exports = adminRouter;

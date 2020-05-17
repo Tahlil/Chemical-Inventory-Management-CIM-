@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt'); //Importing the NPM bcrypt package.
 const saltRounds = 11;
-const admin = require("../Models/models.index").admin;
+const Admin = require("../Models/models.index").admin;
 const ApproveReq = require("../Models/models.index").approveReq;
 const incorrectPrimaryInfo = req => !req.body.username || !req.body.password 
 const incorrectSecondaryInfo = req => !req.body.firstName || !req.body.lastName || !req.body.position
@@ -49,24 +49,30 @@ exports.login = (req, res) => {
     });
     return;
   }
-  User = getUser(userType)
-  User.findOne({
+
+  Admin.findOne({
       "username": req.body.username
     },
-    function (err, user) {
+    function (err, admin) {
       if (err) {
-        res.send(getError("Username not found."));
+        res.send(getError(err.message || "Error occured."));
         return;
       }
-      bcrypt.compare(req.body.password, user.passwordHash, function (err, res) {
-        if (res == true) {
-          res.status(200).send({
-            error: false
-          });
-        } else {
-          res.send(getError("Incorrect password."));
-        }
-      });
+      if(admin){
+        bcrypt.compare(req.body.password, admin.passwordHash, function (err, res) {
+          if (res == true) {
+            res.status(200).send({
+              error: false
+            });
+          } else {
+            res.send(getError("Incorrect password."));
+          }
+        });
+      }
+      else{
+        res.send(getError("Username not found."));
+      }
+      
     });
 };
 
@@ -77,3 +83,16 @@ exports.approve = (req, res) => {
 exports.getAllUnauthorized = (req, res) => {
 
 };
+
+exports.checkUsername = (req, res) => {
+  Admin.findOne({username: req.body.username}, function(err, admin){
+    if(err) {
+      res.send(getError(err.message || "Error checking username."));
+    }
+    if(admin) {
+      res.send({userExist: true})
+    } else {
+      res.send({userExist: false})
+    }
+});
+}

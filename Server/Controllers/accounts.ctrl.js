@@ -68,16 +68,21 @@ exports.login = (req, res) => {
     },
     function (err, user) {
       if (err){
-        res.send(getError("Username not found."));
+        res.send(getError(err.message || "Error occured."));
         return;
       }
-      bcrypt.compare(req.body.password, user.passwordHash, function (err, res) {
-        if (res == true) {
-          res.status(200).send({error: false});
-        } else {
-          res.send(getError("Incorrect password."));
-        }
-      });
+      if(user){
+        bcrypt.compare(req.body.password, user.passwordHash, function (err, res) {
+          if (res == true) {
+            res.status(200).send({error: false});
+          } else {
+            res.send(getError("Incorrect password."));
+          }
+        });
+      }
+      else{
+        res.send(getError("Username not found."));
+      }
     });
 };
 
@@ -103,7 +108,21 @@ exports.requestApproval = (req, res) => {
         res.status(200).send({error: false});
       })
       .catch(err => {
-        res.status(500).send(getError(err.message || "Some error occurred while approving request."));
+        res.status(500).send(getError(err.message || "Some error occurred while saving approval request."));
       });
   });
+};
+
+exports.checkUsername = (req, res) => {
+  User = getUser(req.body.userType)
+  User.findOne({username: req.body.username}, function(err, user){
+    if(err) {
+      res.send(getError(err.message || "Error checking username."));
+    }
+    if(user) {
+      res.send({userExist: true})
+    } else {
+      res.send({userExist: false})
+    }
+});
 }
