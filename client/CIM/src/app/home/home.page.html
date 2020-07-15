@@ -1,3 +1,4 @@
+
 <ion-header [translucent]="true" >
   <ion-toolbar  color="primary">
     <ion-title class="ion-text-center"> 
@@ -5,7 +6,6 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
  
   <div id="img">
@@ -20,11 +20,11 @@
   </h1>
   
   <ion-buttons slot="primary">
-    <ion-button>
+    <ion-button [routerLink]="['/auth/signup']" >
       <ion-icon name="person-circle"></ion-icon> Sign Up
     </ion-button>
     <br>
-    <ion-button>
+    <ion-button [routerLink]="['/auth/signin']">
       <ion-icon name="log-in-outline"></ion-icon>Sign In
     </ion-button>
   </ion-buttons>
