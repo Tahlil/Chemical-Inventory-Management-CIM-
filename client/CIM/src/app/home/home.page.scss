@@ -8,6 +8,38 @@
   transform: translateY(-50%);
 }
 
+#header{
+  position: absolute;
+  top: 15%;
+  left: -5%;
+  font-family: "Dancing Script", cursive;
+  width: 100%;
+  font-size: 5rem;
+}
+
+#img{
+  background: url("../../assets/images/bgCIM.png");
+  background-repeat: no-repeat;
+  background-size: 65% 70%;
+  background-position: center;
+  opacity: 81%;
+}
+
+@media only screen and (max-width: 1290px) {
+  #img {
+    background-size: 55% 45%;
+  }
+  #header{
+    font-size: 60px;
+    left: 3%;
+  }
+}
+
+
+ion-content{
+  background-image:url('../../assets/images/bgCIM.png') !important;
+}
+
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -25,3 +57,659 @@
 #container a {
   text-decoration: none;
 }
+
+
+.flask {
+  height: 405px;
+  width: 368px;
+  position: absolute;
+  bottom: 0;
+}
+
+.flask__throat {
+  width: 64px;
+  height: 155px;
+  overflow: hidden;
+
+  position: absolute;
+  left: 152px;
+  top: 0;
+}
+
+.flask__throat-one {
+  width: 150px;
+  height: 50px;
+  background-color: #5c30ae;
+
+  position: absolute;
+  right: -26px;
+  top: 110px;
+  z-index: 3;
+
+  transform: rotate(24deg);
+  transform-origin: right top;
+
+  animation-name: animation_bg_element6;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__throat-two {
+  width: 150px;
+  height: 60px;
+  background-color: #37acdd;
+
+  transform: rotate(20deg);
+  transform-origin: right top;
+
+  transform: rotate(20deg);
+  transform-origin: right top;
+
+  position: absolute;
+  right: -35px;
+  top: 35px;
+  z-index: 3;
+
+  animation-name: animation_bg_flask__circle2;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__throat-three {
+  width: 100%;
+  height: 50px;
+  background-color: #5c30ae;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+
+  animation-name: animation_bg_element6;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__throat-four {
+  width: 150px;
+  height: 20px;
+  background-color: #6c49ac;
+
+  transform: rotate(20deg);
+  transform-origin: right top;
+
+  position: absolute;
+  right: -45px;
+  top: 100px;
+  z-index: 3;
+
+  animation-name: animation_bg_element7;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+.flask__triangle {
+  width: 368px;
+  height: 250px;
+  overflow: hidden;
+  position: relative;
+}
+
+.flask__triangle::before,
+.flask__triangle::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 250px solid white;
+
+  position: absolute;
+  top: 0;
+  z-index: 100;
+}
+
+.flask__triangle:before {
+  border-right: 152px solid transparent;
+  left: 0;
+}
+
+.flask__triangle:after {
+  border-left: 152px solid transparent;
+  right: 0;
+}
+
+.flask__bottom-one {
+  width: 0;
+  height: 0;
+
+  border-bottom: 55px solid #3a2481;
+  border-left: 32px solid transparent;
+  border-right: 42px solid transparent;
+
+  position: absolute;
+  bottom: 0;
+  z-index: 4;
+
+  animation-name: animation_bg_element1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom-two {
+  width: 0;
+  height: 0;
+
+  border-bottom: 165px solid #4266c0;
+  border-left: 93px solid transparent;
+  border-right: 200px solid transparent;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+
+  animation-name: animation_bg_element2;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom-five {
+  width: 100%;
+  height: 75px;
+  background-color: #4248c0;
+
+  position: absolute;
+  left: 50px;
+  bottom: 18px;
+  z-index: 3;
+
+  transform: rotate(24deg);
+  transform-origin: left top;
+
+  animation-name: animation_bg_element3;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom-six {
+  width: 100%;
+  height: 170px;
+  background-color: #37acdd;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  animation-name: animation_bg_flask__circle1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom-seven {
+  width: 100%;
+  height: 218px;
+  background-color: #1493c8;
+
+  position: absolute;
+  right: -95px;
+  bottom: 24px;
+  z-index: 3;
+
+  transform: rotate(24deg);
+  transform-origin: right top;
+
+  animation-name: animation_bg_flask__circle2;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask__bottom-eight {
+  width: 100%;
+  height: 50px;
+  background-color: #5c30ae;
+
+  position: absolute;
+  right: -95px;
+  bottom: 218px;
+  z-index: 3;
+
+  transform: rotate(-12deg);
+  transform-origin: left top;
+
+  animation-name: animation_bg_element6;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+
+.flask_small {
+  width: 200px;
+  height: 230px;
+}
+
+.flask_small .flask__throat {
+  width: 36px;
+  height: 99px;
+  overflow: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 82px;
+}
+
+.flask_small .flask__throat-one {
+  width: 150px;
+  height: 50px;
+  background-color: #5c30ae;
+
+  position: absolute;
+  right: -26px;
+  top: 75px;
+  z-index: 3;
+
+  transform: rotate(24deg);
+  transform-origin: right top;
+}
+
+.flask_small .flask__throat-two {
+  width: 75px;
+  height: 25px;
+  background-color: #37acdd;
+  transform-origin: right top;
+
+  position: absolute;
+  right: -30px;
+  top: 37px;
+  z-index: 3;
+}
+
+.flask_small .flask__throat-three {
+  height: 20px;
+  width: 100%;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+.flask_small .flask__throat-four {
+  top: 60px;
+  z-index: 2;
+}
+
+.flask_small .flask__triangle {
+  width: 200px;
+  height: 135px;
+}
+
+.flask_small .flask__triangle:before, .flask_small .flask__triangle:after {
+  border-top: 135px solid white;
+}
+
+.flask_small .flask__triangle:before {
+  border-right: 82px solid transparent;
+}
+
+.flask_small .flask__triangle:after {
+  border-left: 82px solid transparent;
+}
+
+.flask_small .flask__bottom-one {
+  border-bottom: 35px solid #3a2481;
+  border-left: 15px solid transparent;
+  border-right: 24px solid transparent;
+}
+
+.flask_small .flask__bottom-two {
+  border-bottom: 94px solid #4266c0;
+  border-left: 44px solid transparent;
+  border-right: 113px solid transparent;
+}
+
+.flask_small .flask__bottom-five {
+  bottom: -21px;
+  left: 25px;
+}
+
+.flask_small .flask__bottom-six {
+  height: 90px;
+}
+
+.flask_small .flask__bottom-seven {
+  bottom: 26px;
+  height: 85px;
+  right: -14px;
+}
+
+.flask_small .flask__bottom-eight {
+  bottom: 107px;
+  height: 20px;
+  right: 0;
+}
+
+.flask_left {
+  left: 3%;
+}
+
+.flask_left .circle_small {
+  animation-duration: 2000ms;
+  animation-delay: 100ms;
+}
+
+.flask_left .circle_little-white {
+  left: 48%;
+  animation-duration: 2000ms;
+  animation-delay: 0ms;
+}
+
+.flask_left .circle_little-purpure {
+  left: 50%;
+  animation-duration: 2000ms;
+  animation-delay: 200ms;
+}
+
+.flask_left .circle_little-blue {
+  left: 45%;
+  animation-duration: 2000ms;
+  animation-delay: 300ms;
+}
+
+.flask_left .flask__circle1 {
+  left: 45%;
+  animation-duration: 2000ms;
+  animation-delay: 600ms;
+}
+
+.flask_left .flask__circle2 {
+  left: 47%;
+  animation-duration: 2000ms;
+  animation-delay: 900ms;
+}
+
+.flask_center {
+  right: 31%;
+}
+
+.flask_center .circle_little-white {
+  animation-duration: 3000ms;
+  animation-delay: 0ms;
+}
+
+.flask_center .circle_little-purpure {
+  animation-duration: 3000ms;
+  animation-delay: 200ms;
+}
+
+.flask_center .circle_little-white, .flask_center .circle_little-purpure {
+  left: 50%;
+}
+
+.flask_center .circle_little-blue {
+  animation-duration: 3000ms;
+  animation-delay: 500ms;
+}
+
+.flask_center .circle_small {
+  animation-duration: 3000ms;
+  animation-delay: 1400ms;
+}
+
+.flask_center .circle_small, .flask_center .circle_little-blue {
+  left: 45%;
+}
+
+.flask_right {
+  right: 0;
+}
+
+.flask_right .circle_small {
+  animation-duration: 4200ms;
+  animation-delay: 400ms;
+}
+
+.flask_right .circle_little-white {
+  left: 48%;
+  animation-duration: 4200ms;
+  animation-delay: 0ms;
+}
+
+.flask_right .circle_little-purpure {
+  left: 52%;
+  animation-duration: 4200ms;
+  animation-delay: 200ms;
+}
+
+.flask_right .circle_little-blue {
+  left: 45%;
+  animation-duration: 4200ms;
+  animation-delay: 600ms;
+}
+
+@keyframes animation_bg_element1 {
+  0% {
+    border-bottom-color: #3a2481;
+  }
+  25% {
+    border-bottom-color: #242781;
+  }
+  50% {
+    border-bottom-color: #244081;
+  }
+  75% {
+    border-bottom-color: #242781;
+  }
+}
+
+@keyframes animation_bg_element2 {
+  0% {
+    border-bottom-color: #4266c0;
+  }
+  25% {
+    border-bottom-color: #4287c0;
+  }
+  50% {
+    border-bottom-color: #42a8c0;
+  }
+  75% {
+    border-bottom-color: #4287c0;
+  }
+}
+
+@keyframes animation_bg_element3 {
+  0% {
+    background-color: #4248c0;
+  }
+  25% {
+    background-color: #4269c0;
+  }
+  50% {
+    background-color: #428ac0;
+  }
+  75% {
+    background-color: #4269c0;
+  }
+}
+
+@keyframes animation_bg_flask__circle1 {
+  0% {
+    background-color: #37acdd;
+  }
+  25% {
+    background-color: #37d8dd;
+  }
+  50% {
+    background-color: #37ddb5;
+  }
+  75% {
+    background-color: #37d8dd;
+  }
+}
+
+@keyframes animation_bg_flask__circle2 {
+  0% {
+    background-color: #1493c8;
+  }
+  25% {
+    background-color: #14c2c8;
+  }
+  50% {
+    background-color: #14c89d;
+  }
+  75% {
+    background-color: #14c2c8;
+  }
+}
+
+@keyframes animation_bg_element6 {
+  0% {
+    background-color: #5c30ae;
+  }
+  25% {
+    background-color: #3a30ae;
+  }
+  50% {
+    background-color: #3048ae;
+  }
+  75% {
+    background-color: #3a30ae;
+  }
+}
+
+@keyframes animation_bg_element7 {
+  0% {
+    background-color: #6c49ac;
+  }
+  25% {
+    background-color: #5249ac;
+  }
+  50% {
+    background-color: #495aac;
+  }
+  75% {
+    background-color: #5249ac;
+  }
+}
+
+/*
+ *bubble
+ */
+
+.circle {
+  border-radius: 50%;
+  border: 1px solid #fff;
+
+  position: absolute;
+  left: 48%;
+  top: 35px;
+
+  animation-name: circle;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
+  animation-delay: 0s;
+}
+
+.circle_little {
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+}
+
+.circle_little-white {
+  background-color: #fff;
+}
+
+.circle_little-purpure {
+  background-color: #6c49ac;
+  border: 1px solid #6c49ac;
+}
+
+.circle_little-blue {
+  background-color: #117fba;
+  border: 1px solid #117fba;
+}
+
+.circle_small {
+  width: 20px;
+  height: 20px;
+}
+
+.circle_middle {
+  width: 45px;
+  height: 45px;
+  margin-left: 2px;
+  left: 42%;
+}
+
+@keyframes circle {
+  0% {
+    transform: translateZ(0px) translateY(20px) scale(1);
+    opacity: 1;
+  }
+  85% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0px) translateY(-200px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translateZ(0px) translateY(20px) scale(1) rotateZ(0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(0px) translateY(-200px) scale(1) rotateZ(360deg);
+  }
+}
+
+@media (max-width: 1200px){
+  
+  .flask_center {
+    display: none;
+  }
+}
+
+@media (max-width: 639px){
+  
+  .flask_right {
+    display: none;
+  }
+}
+
+/*
+=====
+DEMO
+=====
+*/
+
+// body{
+//   background-color: #292548;
+//   margin: 0;
+// }
+
+.container{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  min-height: 400px;
+}
+
