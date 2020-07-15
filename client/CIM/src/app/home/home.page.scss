@@ -1,11 +1,17 @@
 #container {
   text-align: center;
-
+  
   position: absolute;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+
+ion-content{
+  display: block;
+  height: 100% ;
+  min-height: 1000px !important;
 }
 
 #header{
@@ -14,7 +20,28 @@
   left: -5%;
   font-family: "Dancing Script", cursive;
   width: 100%;
+  text-shadow: 3px 3px 3px #333;
   font-size: 5rem;
+}
+
+ion-buttons{
+  position: absolute;
+  left:50%; 
+  top:50%; 
+  transform: translate(-50%, -50%);
+}
+
+ion-button{
+  font-size: 1.1rem;
+  border: black 3px solid;
+  padding: 3px;
+
+}
+
+ion-button:hover{
+  border: teal 3px solid;
+  box-shadow: 1px 2px rgba($color: #000000, $alpha: 0.6);
+  color: rgb(23, 59, 59);
 }
 
 #img{
@@ -30,7 +57,7 @@
     background-size: 55% 45%;
   }
   #header{
-    font-size: 60px;
+    font-size: 55px;
     left: 3%;
   }
 }
@@ -694,22 +721,11 @@ ion-content{
   }
 }
 
-/*
-=====
-DEMO
-=====
-*/
-
-// body{
-//   background-color: #292548;
-//   margin: 0;
-// }
-
 .container{
-  position: relative;
+  position: block;
   margin-left: auto;
   margin-right: auto;
   height: 100vh;
-  min-height: 400px;
+  // min-height: 400px;
 }
 
