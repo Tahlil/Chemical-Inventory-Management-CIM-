@@ -1,8 +1,26 @@
 <ion-header [translucent]="true" >
   <ion-toolbar  color="primary">
-    <ion-title class="ion-text-center"> 
-      CIM App
-    </ion-title>
+
+
+    <ion-grid fixed>
+      <ion-row>
+          <ion-col size="7"  size-lg="4">
+            <div id="headAddBtn"  >
+              <a href="#" class="fancy-button medium rounded greenSea zoom">
+               <span class="lg-view">Add New Chemical</span>  
+               <!-- <span class="sm-view">Add</span>   -->
+                <ion-icon name="add"></ion-icon>
+              </a>
+            </div>
+          </ion-col>
+          <ion-col size="3" size-lg="6" offset="2">
+            <div id="head">
+              CIM App
+            </div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +37,7 @@
             <th>Chemical Name</th>
             <th>Quantity</th>
             <th>SDS</th>
-            <th>Withdraw</th>
+            <th><span style="color: #90EE90 !important;">Add</span> / <span style="color:#FF7F7F !important;">Withdraw</span></th>
           </tr>
           <tr>
             <td data-th="Place"> UPS5005
@@ -37,7 +55,12 @@
               12/25/2016
             </td>
             <td data-th="Withdraw">
-              $8,322.12
+              <ion-button (click)="onClick()" expand="block" color="success" shape="round">
+                Add <ion-icon slot="start" name="add"></ion-icon>
+              </ion-button>
+              <ion-button (click)="onClick()" expand="block" color="danger" shape="round">
+                Withdraw <ion-icon slot="start" name="beaker"></ion-icon>
+              </ion-button>
             </td>
           </tr>
           <tr>

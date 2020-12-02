@@ -118,3 +118,135 @@ h1 {
   display: block;
   text-align: center;
 }
+
+.fancy-button {
+  position: relative;
+  color: #fff;
+  border: 1px solid;
+  margin: 5px;
+  padding: 10px 25px;
+  text-decoration: none;
+  display: block;
+  outline: none;
+  line-height: 100%;
+  overflow: hidden;
+  height: 40px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.fancy-button:hover {
+  text-decoration: none;
+}
+.medium {
+  padding: 10px 25px;
+  font-size: 1.15em;
+}
+.rounded {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+}
+.round:hover {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  border-radius: 15px;
+}
+.zoom {
+  -webkit-transition: all 0.35s ease;
+  -moz-transition: all 0.35s ease;
+  -o-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+
+.zoom:hover ion-icon {
+  -webkit-animation: zoom 0.25s 2 linear alternate;
+  -moz-animation: zoom 0.25s 2 linear alternate;
+  -o-animation: zoom 0.25s 2 linear alternate;
+  animation: zoom 0.25s 2 linear alternate;
+}
+.greenSea {
+  background-color: #16a085;
+}
+.greenSea:hover {
+  color: #16a085;
+  background-color: #fff;
+}
+
+.fancy-button:hover {
+  text-decoration: none;
+}
+.fancy-button ion-icon {
+  float: right;
+}
+.fancy-button ion-icon {
+  display: inline-block;
+}
+.fancy-button:active ion-icon,
+.fancy-button:focus ion-icon {
+  -webkit-transform: scale(0.75);
+  -moz-transform: scale(0.75);
+  -o-transform: scale(0.75);
+  transform: scale(0.75);
+}
+
+/* Keyframes */
+@-webkit-keyframes zoom {
+  from {
+    -webkit-transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.5);
+  }
+}
+@-moz-keyframes zoom {
+  from {
+    -moz-transform: scale(1);
+  }
+  to {
+    -moz-transform: scale(1.5);
+  }
+}
+@-o-keyframes zoom {
+  from {
+    -o-transform: scale(1);
+  }
+  to {
+    -o-transform: scale(1.5);
+  }
+}
+@keyframes zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+#head{
+  font-size: 3rem;
+}
+#headAddBtn{
+ padding-top: 1rem;
+}
+
+// .lg-view{
+//   display:inline-block;
+// }
+
+// .sm-view{
+//   display:none;
+// }
+
+// @media screen and (max-width: 1500px) {
+//   .lg-view{
+//      display:none;
+//   }
+
+//   .sm-view{
+//      display:inline-block;
+//   }
+// }
