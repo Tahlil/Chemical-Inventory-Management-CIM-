@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { TooltipModule } from 'ng2-tooltip-directive';
 import { MainPageRoutingModule } from './main-routing.module';
 
 import { MainPage } from './main.page';
@@ -13,7 +13,8 @@ import { MainPage } from './main.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule
+    MainPageRoutingModule,
+    TooltipModule
   ],
   declarations: [MainPage]
 })

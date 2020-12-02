@@ -74,7 +74,16 @@
   .rwd-table tr:nth-child(2) {
     border-top: none;
   }
+ 
 }
+@media screen and (max-width: 1000px) {
+  
+  #head{
+    font-size: 2rem !important;
+  }
+}
+
+
 @media screen and (min-width: 600px) {
   .rwd-table tr:hover:not(:first-child) {
     background-color: #d8e7f3;
@@ -215,7 +224,7 @@ h1 {
     -o-transform: scale(1);
   }
   to {
-    -o-transform: scale(1.5);
+    -o-transform: scale(1.9);
   }
 }
 @keyframes zoom {
@@ -223,7 +232,7 @@ h1 {
     transform: scale(1);
   }
   to {
-    transform: scale(1.5);
+    transform: scale(1.9);
   }
 }
 #head{
@@ -233,20 +242,13 @@ h1 {
  padding-top: 1rem;
 }
 
-// .lg-view{
-//   display:inline-block;
-// }
+.trash{
+  cursor: pointer;
+  font-size: 2rem !important;
+  z-index: 11;
+}
 
-// .sm-view{
-//   display:none;
-// }
-
-// @media screen and (max-width: 1500px) {
-//   .lg-view{
-//      display:none;
-//   }
-
-//   .sm-view{
-//      display:inline-block;
-//   }
-// }
+.trash:hover{
+  color: green !important;
+  font-size: 2 rem !important;
+}
