@@ -23,38 +23,38 @@ function getUser(userType, userInfo) {
   }
 }
 
-exports.register = (req, res) => {
-  // Validate request
-  if (incorrectPrimaryInfo(req) || incorrectSecondaryInfo(req)) {
-    res.status(400).send(getError("Invalid request"));
-    return;
-  }
+// exports.register = (req, res) => {
+//   // Validate request
+//   if (incorrectPrimaryInfo(req) || incorrectSecondaryInfo(req)) {
+//     res.status(400).send(getError("Invalid request"));
+//     return;
+//   }
 
-  const userType = req.body.userType;
-  // Create a user
-  let user, userInfo = {
-    username: req.body.username,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    position: req.body.position,
-    passwordHash: req.body.password
-  };
+//   const userType = req.body.userType;
+//   // Create a user
+//   let user, userInfo = {
+//     username: req.body.username,
+//     firstName: req.body.firstName,
+//     lastName: req.body.lastName,
+//     position: req.body.position,
+//     passwordHash: req.body.password
+//   };
 
-  User = getUser(userType)
-  user = new User(userInfo)
-  // Save user in the database
-  user
-    .save(user)
-    .then(data => {
-      console.log("Registered: "+ userType); 
-      res.status(200).send({
-        error: false
-      });
-    })
-    .catch(err => {
-      res.status(500).send(getError(err.message || "Some error occurred while registering user."));
-    });
-};
+//   User = getUser(userType)
+//   user = new User(userInfo)
+//   // Save user in the database
+//   user
+//     .save(user)
+//     .then(data => {
+//       console.log("Registered: "+ userType); 
+//       res.status(200).send({
+//         error: false
+//       });
+//     })
+//     .catch(err => {
+//       res.status(500).send(getError(err.message || "Some error occurred while registering user."));
+//     });
+// };
 
 exports.login = (req, res) => {
   // Validate request
