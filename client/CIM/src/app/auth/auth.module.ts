@@ -8,6 +8,7 @@ import { AuthPageRoutingModule } from './auth-routing.module';
 
 import { SignUpPage } from './signup.page';
 import { SignInPage } from './signin.page';
+import { AdminSignInPage } from './admin.signin.page';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { SignInPage } from './signin.page';
     IonicModule,
     AuthPageRoutingModule
   ],
-  declarations: [SignUpPage, SignInPage]
+  declarations: [SignUpPage, SignInPage, AdminSignInPage]
 })
 export class AuthPageModule {}

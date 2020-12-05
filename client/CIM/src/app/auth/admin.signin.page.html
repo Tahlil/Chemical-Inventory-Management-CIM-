@@ -1,0 +1,56 @@
+<ion-header [translucent]="true" >
+   
+    <ion-toolbar  color="primary">
+      
+      <ion-title class="ion-text-center"> 
+          <ion-grid fixed>
+            <ion-row>
+                <ion-col size="5">
+                  <div class="ion-text-start backBtn"  >
+                    <ion-icon name="arrow-undo-outline" [routerLink]="['/home']"></ion-icon>
+                  </div>
+                </ion-col>
+                <ion-col size="6">
+                  <div class="ion-text-start">
+                    CIM App
+                  </div>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content  class="ion-padding">
+    <div class="wrapper">
+        <div class="container">
+          <div class="col-left">
+            <div class="login-text">
+              <h2>Welcome, Admin</h2>
+              <p>Sign in as admin</p>
+            </div>
+          </div>
+          <div class="col-right">
+            <div class="login-form">
+              <h2>Login</h2>
+              <form>
+                <p>
+                  <label>Username or email address<span>*</span></label>
+                  <input type="text" placeholder="Username or Email" required>
+                </p>
+                <p>
+                  <label>Password<span>*</span></label>
+                  <input type="password" placeholder="Password" required>
+                </p>
+                <p>
+                  <input type="submit" value="Sing In" />
+                </p>
+                <p>
+                  <a href="">Forget Password?</a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+</ion-content>
