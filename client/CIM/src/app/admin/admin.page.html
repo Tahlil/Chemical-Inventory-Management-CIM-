@@ -21,5 +21,52 @@
   </ion-toolbar>
 </ion-header>
 <ion-content  class="ion-padding">
+  <ion-card>
+    <ion-item>
+      <ion-icon name="happy-outline"></ion-icon>
+      <ion-label> &nbsp; Welcome, Name</ion-label>
+      <ion-button fill="outline" slot="end">Change Display Name</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      <h2 id="ins">Here's what you can do</h2>
+      
+      People can request to signup to use the Chemical Inventory management system as user type of "guest" or "faculty" or "store in charge" (These user types are mentioned in order of increasing access privilege). You can either reject or approve these signup request. You can also view the approval/refection history.
+    </ion-card-content>
+  </ion-card>
 
+  <ion-grid fixed>
+    <ion-row>
+
+        <div *ngFor="let item of [1,2,3,4,5,6,6,6]" class="plane-container">
+          <!--THIS IS WHERE MY HTML ELEMENTS GO-->
+          <div class="wrapper">
+            <div class="head">Approval Name is longer than this can hold</div>
+            <div class="body">
+              Since launching Microsoft Flow last year, we’ve heard from many of you about the need for Flow.
+            </div>
+            <div class="foot">
+              <div class="approve-btn">A</div>
+              <div class="reject-btn">R</div>
+            </div>
+          </div>
+          <!--SVG ELEMENT BEHIND IT-->
+          <svg id="approval_plane" x="0px" y="0px">
+            <g id="airplane">
+              <polygon id="fold2_left" points="0,247.801 102.749,0 102.749,146.852"/>
+              <polygon id="fold2_right" points="205.498,247.801 102.749,0 102.749,146.852"/>
+              <polygon id="fold1_left" points="102.749,105.096 102.749,146.852 0,102.749 102.749,0"/>
+              <polygon id="fold1_right" points="102.749,146.852 102.749,105.096 102.749,0 205.498,105.096"/>
+              <polygon id="page" points="205.498,247.801 102.749,247.801 0,247.801 0,123.9 0,105.096 0,0 102.749,0 205.498,0 205.498,105.096 205.498,123.9"/>
+              <polygon id="fold_line" points="102.749,0 102.749,0 102.749,0"/>
+            </g>
+          </svg>
+        </div>
+  
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
+
+
+

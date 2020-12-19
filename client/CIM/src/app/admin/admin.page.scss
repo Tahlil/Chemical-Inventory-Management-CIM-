@@ -2,3 +2,105 @@
     font-size: 1.7rem;
     cursor: pointer;
   }
+
+  #ins{
+      text-decoration: underline;
+  }
+
+ 
+
+  .plane-container{
+    margin: 15px 30px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  //CSS grid definition
+  .wrapper{
+    z-index: 200;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-gap: 0px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto;
+    grid-template-areas: 
+      "header"
+      "body"
+      "foot";
+  }
+ 
+  .head{
+    grid-area: "header";
+
+    position: relative;
+    background: #ccc;
+    color: #484848;
+    padding: 7px 10px;
+  }
+  .body{
+
+    grid-area: "header";
+    position: relative;
+    padding: 10px;
+  }
+  .foot{
+    grid-area: "header";
+    position: relative;
+    padding: 0px 15px;
+    color: white;
+  }
+  
+  // Button Properties
+  .approve-btn, .reject-btn{
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    border-width: 2px;
+    border-style: solid;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  .approve-btn:active, .reject-btn:active{
+    transform-origin: 50% 50%;
+    transition: 100ms;
+    transform: scale(0.97);
+  }
+  .approve-btn{
+    float: left;
+    background: green;
+    border-color: #9dea9d;
+  }
+  .reject-btn{
+    float: right;
+    background: red;
+    border-color: #ff9696;
+  }
+  
+  // The SVG itself
+  .plane-container > #approval_plane{
+    display: inline-block;
+    position: relative;
+    height: 249px;
+    width: 206px;
+  }
+  
+  // The Plane GROUP in the SVG
+  #airplane{
+    position: relative;
+    border: 5px solid red;
+  }
+  
+  // Controls All Shapes used in SVG
+  polygon{
+    fill: #fafafa;
+    stroke: #ccc;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+  }
+  
