@@ -36,7 +36,7 @@ export class AdminPage implements OnInit, AfterViewInit  {
       setTimeout(function(){
         var sail = new TimelineMax({repeat:0, yoyo:true});
         sail.to(container, 0.2, {top: 30})
-          .to(container, 0.2, {top: (-container.height()-50)})
+          .to(container, 0.2, {top: (-container.height()-550)})
           .to(container, 0.2, {width: 0, margin: 0, padding: 0})
           .to(container, 0.2, {display: "none"});
       }, 1200);
@@ -61,7 +61,7 @@ export class AdminPage implements OnInit, AfterViewInit  {
       setTimeout(function(){
         var sail = new TimelineMax({repeat:0, yoyo:true});
         sail.to(container, 0.2, {top: -30})
-          .to(container, 0.2, {top: (container.height()+50)})
+          .to(container, 0.2, {top: (container.height()+550)})
           .to(container, 0.2, {width: 0, margin: 0, padding: 0})
           .to(container, 0.2, {display: "none"});
       }, 800);

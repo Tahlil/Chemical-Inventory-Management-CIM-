@@ -17,7 +17,7 @@
   
   //CSS grid definition
   .wrapper{
-    z-index: 200;
+    z-index: 11;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -96,6 +96,7 @@
   
   // Controls All Shapes used in SVG
   polygon{
+
     fill: #fafafa;
     stroke: #ccc;
     stroke-linejoin: round;
