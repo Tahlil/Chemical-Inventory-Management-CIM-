@@ -10,38 +10,38 @@ const getError = errMessage => ({
 })
 
 
-exports.register = (req, res) => {
-  // Validate request
-  if (incorrectPrimaryInfo(req) || incorrectSecondaryInfo(req)) {
-    res.status(400).send(getError("Invalid request"));
-    return;
-  }
+// exports.register = (req, res) => {
+//   // Validate request
+//   if (incorrectPrimaryInfo(req) || incorrectSecondaryInfo(req)) {
+//     res.status(400).send(getError("Invalid request"));
+//     return;
+//   }
 
-  // Create a admin
-  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
-    const admin = new Admin({
-      username: req.body.username,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      position: req.body.position,
-      passwordHash: hash
-    })
-    // Save user in the database
-    admin
-      .save(admin)
-      .then(data => {
-        console.log("Admin registered.");
+//   // Create a admin
+//   bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+//     const admin = new Admin({
+//       username: req.body.username,
+//       firstName: req.body.firstName,
+//       lastName: req.body.lastName,
+//       position: req.body.position,
+//       passwordHash: hash
+//     })
+//     // Save user in the database
+//     admin
+//       .save(admin)
+//       .then(data => {
+//         console.log("Admin registered.");
         
-        res.status(200).send({
-          error: false
-        });
-      })
-      .catch(err => {
-        res.status(500).send(getError(err.message || "Some error occurred while registering user."));
-      });
-  });
+//         res.status(200).send({
+//           error: false
+//         });
+//       })
+//       .catch(err => {
+//         res.status(500).send(getError(err.message || "Some error occurred while registering user."));
+//       });
+//   });
 
-};
+// };
 
 exports.login = (req, res) => {
   // Validate request
@@ -93,12 +93,23 @@ exports.approve = (req, res) => {
       else{
         res.send(getError("Username not found."));
       }
-      
+    }
+  });
+}
+
+exports.disapprove = (req, res) =>{
+  ApproveReq.deleteOne({ username: req.body.username }, function (err) {
+    if (err) {
+      console.log(err);
+      res.send(getError(err.message || "Error unapproving user."));
+    } else {
+       res.status(200).send({error: false});
     }
   });
 }
 
 exports.getAllUnapproved = (req, res) => {
+  console.log("Getting all unapproved.");
   ApproveReq.find({})
     .then(data => {
       res.send(data);

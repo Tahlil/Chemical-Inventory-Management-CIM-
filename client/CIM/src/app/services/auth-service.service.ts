@@ -8,6 +8,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class AuthServiceService {
   constructor(private apiURLs: APIs, private http: HttpClient) {}
 
+  getApprovalRequest(){
+    console.log("API::");
+    
+    console.log(this.apiURLs.adminGetUnapprovedAPI);
+    
+    return this.http.get(this.apiURLs.adminGetUnapprovedAPI);
+  }
+
   requestApproval(
     username: string,
     password: string,
