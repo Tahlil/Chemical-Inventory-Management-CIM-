@@ -54,6 +54,7 @@ export class MainPage implements OnInit {
       "add": AddChemicalModalComponent,
       "remove": RemoveChemicalModalComponent
     }
+    // this.chemicals= await
   }
 
   ngOnInit() {
