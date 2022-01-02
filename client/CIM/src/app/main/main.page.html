@@ -44,20 +44,20 @@
             <th><span style="color: #90EE90 !important;">Add</span> / <span style="color:#FF7F7F !important;">Withdraw</span></th>
             <th></th>
           </tr>
-          <tr>
-            <td data-th="Place"> UPS5005
+          <tr *ngFor="let chemical of this.chemicals" >
+            <td data-th="Place"> {{chemical.place}}
             </td>
             <td data-th="CAS Number">
-              UPS
+              {{chemical.casNumber}}
             </td>
             <td data-th="Chemical Name">
-              ASDF19218
+              {{chemical.name}}
             </td>
             <td data-th="Quantity">
-              06/25/2016
+              {{chemical.quantity}}
             </td>
             <td data-th="SDS">
-              12/25/2016
+              {{chemical.sds}}
             </td>
             <td data-th="Withdraw">
               <ion-button (click)="onClick()" expand="block" color="success" shape="round">
@@ -71,77 +71,7 @@
               <ion-icon tooltip="remove" placement="top" show-delay="500" class="trash" name="trash-bin-outline" color="danger"></ion-icon>
             </td>
           </tr>
-          <tr>
-            <td data-th="Place">
-              UPS3449
-            </td>
-            <td data-th="CAS Number">
-              UPS South Inc.
-            </td>
-            <td data-th="Chemical Name">
-              ASDF29301
-            </td>
-            <td data-th="Quantity">
-              6/24/2016
-            </td>
-            <td data-th="SDS">
-              12/25/2016
-            </td>
-            <td data-th="Withdraw">
-              $3,255.49
-            </td>
-            <td>
-              <ion-icon tooltip="remove" placement="top" show-delay="500" class="trash" name="trash-bin-outline" color="danger"></ion-icon>
-            </td>
-          </tr>
-          <tr>
-            <td data-th="Place">
-              BOX5599
-            </td>
-            <td data-th="CAS Number">
-              BOX Pro West
-            </td>
-            <td data-th="Chemical Name">
-              ASDF43000
-            </td>
-            <td data-th="Quantity">
-              6/27/2016
-            </td>
-            <td data-th="SDS">
-              12/25/2016
-            </td>
-            <td data-th="Withdraw">
-              $45,255.49
-            </td>
-            <td>
-              <ion-icon tooltip="remove" placement="top" show-delay="500" class="trash" name="trash-bin-outline" color="danger"></ion-icon>
-            </td>
-          </tr>
-          <tr>
-            <td data-th="Place">
-              PAN9999
-            </td>
-            <td data-th="CAS Number">
-              Pan Providers and Co.
-            </td>
-            <td data-th="Chemical Name">
-              ASDF33433
-            </td>
-            <td data-th="Quantity">
-              6/29/2016
-            </td>
-            <td data-th="SDS">
-              12/25/2016
-            </td>
-            <td data-th="Withdraw">
-              $12,335.69
-            </td>
-            <td>
-           
-                <ion-icon tooltip="remove" placement="top" show-delay="500" class="trash" name="trash-bin-outline" color="danger"></ion-icon>
-             
-            </td>
-          </tr>
+
         </tbody>
       </table>
     

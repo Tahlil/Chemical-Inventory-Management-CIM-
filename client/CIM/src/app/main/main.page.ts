@@ -10,6 +10,44 @@ import { RemoveChemicalModalComponent } from '../modal/remove-chemical-modal/rem
 })
 export class MainPage implements OnInit {
   modals;
+  chemicals = [
+    {
+      name: 'Carbon',
+      casNumber: '7440-44-0',
+      place: "A3 S1 R11",
+      quantity: '11 g',
+      sds: 'https://www.osha.gov/sites/default/files/publications/OSHA3514.pdf'
+    },
+    {
+      name: 'Zinc Salfate',
+      casNumber: '7446-19-7',
+      place: "D3 S1 R11",
+      quantity: '2.2 ml',
+      sds: 'https://www.osha.gov/sites/default/files/publications/OSHA3514.pdf'
+    },
+    {
+      name: 'Carbon di oxide',
+      casNumber: '7440-44-0',
+      place: "C3 S1 R1",
+      quantity: '11 g',
+      sds: 'https://www.osha.gov/sites/default/files/publications/OSHA3514.pdf'
+    },
+    {
+      name: 'Carbon (Graphite)',
+      casNumber: '7440-44-0',
+      place: "B3 S1 R11",
+      quantity: '11.3 g',
+      sds: 'https://www.osha.gov/sites/default/files/publications/OSHA3514.pdf'
+    },
+    {
+      name: 'Carbon',
+      casNumber: '7440-44-0',
+      place: "C3 S1 R11",
+      quantity: '13.5 g',
+      sds: 'https://www.osha.gov/sites/default/files/publications/OSHA3514.pdf'
+    },
+    // 
+  ];
   constructor(public modalController: ModalController) {
     this.modals = {
       "new": NewChemicalModalComponent,
