@@ -30,6 +30,9 @@
 
   
   <div class="container">
+    <ion-button (click)="exportCSV()" expand="block" fill="clear" shape="round">
+      Export CSV
+    </ion-button>
     <ion-text color="primary">
       <h1>Inventory</h1>
     </ion-text>
@@ -60,10 +63,10 @@
               {{chemical.sds}}
             </td>
             <td data-th="Withdraw">
-              <ion-button (click)="onClick()" expand="block" color="success" shape="round">
+              <ion-button (click)="openModal('add', chemical)" expand="block" color="success" shape="round">
                 Add <ion-icon slot="start" name="add"></ion-icon>
               </ion-button>
-              <ion-button (click)="onClick()" expand="block" color="danger" shape="round">
+              <ion-button (click)="openModal('remove', chemical)" expand="block" color="danger" shape="round">
                 Withdraw <ion-icon slot="start" name="beaker"></ion-icon>
               </ion-button>
             </td>

@@ -59,14 +59,17 @@ export class MainPage implements OnInit {
   ngOnInit() {
   }
 
-  async openModal(modalType:string) {
+  async openModal(modalType:string, chemical) {
     console.log("Opening modal: ");
     
     console.log(modalType);
+    console.log(chemical);
+    
     
     let ModalComponent = this.modals[modalType];
     const modal = await this.modalController.create({
       component: ModalComponent,
+      componentProps: {chemical: chemical}
     });
     return await modal.present();
   }

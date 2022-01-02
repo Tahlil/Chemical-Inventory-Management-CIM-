@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Adding New Chemical</ion-title>
+    <ion-title>Add {{chemical.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,10 +9,14 @@
   <ion-grid>
 
 
- 
+    <ion-row>
+      <ion-col size="12">
+        <h3>Current amount: {{chemical.quantity}}</h3>
+      </ion-col>
+    </ion-row>
 
     <ion-row class="ion-margin-top">
-      <ion-col size="12" size-sm="5" offset-sm="1">
+      <ion-col size="12" size-sm="11" offset-sm="1">
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">Quantity</ion-label>
@@ -23,7 +27,7 @@
     </ion-row>
     <ion-row class="ion-margin-top">
       <ion-col class="ion-text-center">
-        <ion-button color="secondary" (click)="addNewChemical()"
+        <ion-button color="secondary" (click)="addChemical()"
           ><ion-icon name="add-circle"></ion-icon> &nbsp; Add 
         </ion-button>
       </ion-col>

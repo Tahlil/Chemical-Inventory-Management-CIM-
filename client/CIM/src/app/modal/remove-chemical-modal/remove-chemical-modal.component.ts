@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-remove-chemical-modal',
@@ -7,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RemoveChemicalModalComponent implements OnInit {
 
-  constructor() { }
+  quantity: number;
+
+  @Input('chemical') chemical;
+  constructor(public modalController: ModalController) { }
 
   ngOnInit() {}
+
+  async closeModal() {
+    await this.modalController.dismiss('Cancel');
+  }
+
+  onQuantityChange(event:any){
+    this.quantity = event.detail.value;  
+  }
+
+  async removeChemical(){
+    console.log(this.quantity);
+    
+    await this.modalController.dismiss('Cancel');
+  }
 
 }
