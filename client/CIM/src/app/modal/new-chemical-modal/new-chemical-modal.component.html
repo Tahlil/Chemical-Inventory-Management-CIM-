@@ -14,7 +14,7 @@
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">Chemical name</ion-label>
-            <ion-input type="text" placeholder="enter chemical name here..."></ion-input>
+            <ion-input (ionChange)="onNameChange($event)" type="text" placeholder="enter chemical name here..."></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -24,7 +24,7 @@
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">CAS Number</ion-label>
-            <ion-input type="text" placeholder="enter CAS number..."></ion-input>
+            <ion-input (ionChange)="onCASNumberChange($event)" type="text" placeholder="enter CAS number..."></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -32,7 +32,7 @@
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">SDS</ion-label>
-            <ion-input type="text" placeholder="enter SDS..."></ion-input>
+            <ion-input (ionChange)="onSDSChange($event)" type="text" placeholder="enter SDS..."></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -43,7 +43,7 @@
           <ion-item>
             <ion-label class="required" position="floating">Select Unit Type</ion-label>
             <ion-select
-              [(ngModel)]="selectedType"
+            (ionChange)="onUnitTypeChange($event)"
             >
               <ion-select-option value="ml">Milli Litre (ml)</ion-select-option>
               <ion-select-option value="l">Litre (l)</ion-select-option>
@@ -61,7 +61,7 @@
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">Quantity</ion-label>
-            <ion-input type="number" placeholder="enter quatity..."></ion-input>
+            <ion-input (ionChange)="onQuantityChange($event)" type="number" placeholder="enter quatity..."></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -71,14 +71,14 @@
         <ion-list>
           <ion-item>
             <ion-label class="required" position="floating">Place</ion-label>
-            <ion-input type="text" placeholder="enter place..."></ion-input>
+            <ion-input (ionChange)="onPlaceChange($event)" type="text" placeholder="enter place..."></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>  
     <ion-row class="ion-margin-top">
       <ion-col class="ion-text-center">
-        <ion-button color="secondary" [routerLink]="['/home']" (click)="clickFind()"
+        <ion-button color="secondary" (click)="addNewChemical()"
           ><ion-icon name="add-circle"></ion-icon> &nbsp; Add New Chemical
         </ion-button>
       </ion-col>
