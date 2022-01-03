@@ -1,34 +1,39 @@
 const Chemical = require("../Models/models.index").chemical;
-const incorrectPrimaryInfo = req =>!req.body.casNumber || !req.body.quantity || !req.body.place
-const incorrectSecondaryInfo = req => !req.body.name || !req.body.sds || !req.body.unitType 
-const getError = errMessage => ({
+const incorrectPrimaryInfo = (req) =>
+  !req.body.casNumber || !req.body.quantity || !req.body.place;
+const incorrectSecondaryInfo = (req) =>
+  !req.body.name || !req.body.sds || !req.body.unitType;
+const getError = (errMessage) => ({
   error: true,
-  message: errMessage
-})
+  message: errMessage,
+});
+const { multerFilterFunction } = require("../Utils/fileUtils");
+const multer = require("multer");
+const upload = multer({ dest: "Uploads/", fileFilter: multerFilterFunction });
+const uploadSingle = upload.single("file");
 
-function updateChemicalQuantity(req, res, changeValue){
+function updateChemicalQuantity(req, res, changeValue) {
   // Validate request
   if (incorrectPrimaryInfo(req)) {
     res.status(400).send(getError("Invalid request"));
     return;
   }
-  Chemical.updateOne({casNumber: req.body.casNumber, place: req.body.place},  { $inc: { quantity: changeValue } }, function(
-    err,
-    result
-  ) {
-    if (err) {
-      res.send(getError(err.message || "Error updating chemical."));
-    } else {
-      console.log(result);
-      if(result.n === 1){
-        res.status(200).send({error: false});
+  Chemical.updateOne(
+    { casNumber: req.body.casNumber, place: req.body.place },
+    { $inc: { quantity: changeValue } },
+    function (err, result) {
+      if (err) {
+        res.send(getError(err.message || "Error updating chemical."));
+      } else {
+        console.log(result);
+        if (result.n === 1) {
+          res.status(200).send({ error: false });
+        } else {
+          res.send(getError("Chemical not found."));
+        }
       }
-      else{
-        res.send(getError("Chemical not found."));
-      }
-      
     }
-  });
+  );
 }
 
 exports.create = (req, res) => {
@@ -44,39 +49,61 @@ exports.create = (req, res) => {
     sds: req.body.sds,
     unitType: req.body.unitType,
     quantity: parseInt(req.body.quantity),
-    place: req.body.place
-  })
+    place: req.body.place,
+  });
   // Save Chemical in the database
   chemical
     .save(chemical)
-    .then(data => {
+    .then((data) => {
       res.status(200).send({
-        error: false
+        error: false,
       });
     })
-    .catch(err => {
-      res.status(500).send(getError(err.message || "Some error occurred while inserting chemical."));
+    .catch((err) => {
+      res
+        .status(500)
+        .send(
+          getError(
+            err.message || "Some error occurred while inserting chemical."
+          )
+        );
     });
 };
 
 exports.take = (req, res) => {
-  let decrement = (-1)*parseInt(req.body.quantity)
+  let decrement = -1 * parseInt(req.body.quantity);
   console.log("Decrement: " + decrement);
-  
-  updateChemicalQuantity(req, res, decrement)
+
+  updateChemicalQuantity(req, res, decrement);
 };
 
 exports.add = (req, res) => {
-  let increment = parseInt(req.body.quantity)
-  updateChemicalQuantity(req, res, increment)
+  let increment = parseInt(req.body.quantity);
+  updateChemicalQuantity(req, res, increment);
 };
 
 exports.get = (req, res) => {
   Chemical.find({})
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
-      res.status(500).send(getError(err.message || "Some error occurred while retrieving chemicals."));
+    .catch((err) => {
+      res
+        .status(500)
+        .send(
+          getError(
+            err.message || "Some error occurred while retrieving chemicals."
+          )
+        );
     });
+};
+
+exports.csvImport = (req, res) => {
+  uploadSingle(req, res, (error) => {
+    if (error) {
+      res.status(500).send(getError(error.message));
+    } else {
+      res.send({ error: false });
+    }
+  });
 };
