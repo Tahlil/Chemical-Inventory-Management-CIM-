@@ -112,6 +112,24 @@ exports.csvImport = (req, res) => {
         fs.unlinkSync(filepath);
         res.status(400).send(getError("Invalid CSV file"));
         return;
+      } else {
+        for (singleVcsData of csvData) {
+          const chemical = new Chemical({
+            name: singleVcsData["name"],
+            casNumber: singleVcsData["casNumber"],
+            sds: singleVcsData["sds"],
+            unitType: singleVcsData["unitType"],
+            quantity: parseInt(singleVcsData["quantity"]),
+            place: singleVcsData["place"],
+          });
+          try {
+            await chemical.save();
+          } catch (err) {
+            fs.unlinkSync(filepath);
+            res.status(500).send(getError(err.message));
+            return;
+          }
+        }
       }
       fs.unlinkSync(filepath);
       res.send({ error: false });
