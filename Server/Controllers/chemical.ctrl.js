@@ -11,6 +11,9 @@ const { multerFilterFunction } = require("../Utils/fileUtils");
 const multer = require("multer");
 const upload = multer({ dest: "Uploads/", fileFilter: multerFilterFunction });
 const uploadSingle = upload.single("file");
+const csv = require("csvtojson");
+const { compareCsvFields } = require("../Utils/csvUtils");
+const fs = require("fs");
 
 function updateChemicalQuantity(req, res, changeValue) {
   // Validate request
@@ -99,10 +102,18 @@ exports.get = (req, res) => {
 };
 
 exports.csvImport = (req, res) => {
-  uploadSingle(req, res, (error) => {
+  uploadSingle(req, res, async (error) => {
     if (error) {
       res.status(500).send(getError(error.message));
     } else {
+      let filepath = req.file.path;
+      let csvData = await csv().fromFile(filepath);
+      if (compareCsvFields(csvData[0]) === false) {
+        fs.unlinkSync(filepath);
+        res.status(400).send(getError("Invalid CSV file"));
+        return;
+      }
+      fs.unlinkSync(filepath);
       res.send({ error: false });
     }
   });
