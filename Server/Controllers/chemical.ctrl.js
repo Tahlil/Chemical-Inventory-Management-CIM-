@@ -12,7 +12,7 @@ const multer = require("multer");
 const upload = multer({ dest: "Uploads/", fileFilter: multerFilterFunction });
 const uploadSingle = upload.single("file");
 const csv = require("csvtojson");
-const { compareCsvFields } = require("../Utils/csvUtils");
+const { compareCsvFields, jsonToCsv } = require("../Utils/csvUtils");
 const fs = require("fs");
 
 function updateChemicalQuantity(req, res, changeValue) {
@@ -135,4 +135,23 @@ exports.csvImport = (req, res) => {
       res.send({ error: false });
     }
   });
+};
+
+exports.csvExport = (req, res) => {
+  Chemical.find({})
+    .then((data) => {
+      res
+        .setHeader("Content-Type", "text/csv")
+        .attachment("chemical.csv")
+        .send(jsonToCsv(data));
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send(
+          getError(
+            err.message || "Some error occurred while retrieving chemicals."
+          )
+        );
+    });
 };
