@@ -4,6 +4,7 @@ import { NewChemicalModalComponent } from '../modal/new-chemical-modal/new-chemi
 import { AddChemicalModalComponent } from '../modal/add-chemical-modal/add-chemical-modal.component';
 import { RemoveChemicalModalComponent } from '../modal/remove-chemical-modal/remove-chemical-modal.component';
 import { getChemicals } from "../apiServices/chemicalService";
+import { APIs } from '../configs/config';
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -42,6 +43,12 @@ export class MainPage implements OnInit {
       componentProps: {chemical: chemical}
     });
     return await modal.present();
+  }
+
+  async exportCSV() {
+    let api = new APIs();
+    let url = api.chemicalCSVExportAPI;
+    window.location.href = url;
   }
 
 }
