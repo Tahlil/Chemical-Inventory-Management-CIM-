@@ -35,14 +35,14 @@
               <form>
                 <p>
                   <label>Username or email address<span>*</span></label>
-                  <input type="text" placeholder="Username or Email" required>
+                  <ion-input name="username" (ionChange)="onUsernameChange($event)" type="text" placeholder="Username or Email" required></ion-input>
                 </p>
                 <p>
                   <label>Password<span>*</span></label>
-                  <input type="password" placeholder="Password" required>
+                  <ion-input name="password" (ionChange)="onPasswordChange($event)" type="password" placeholder="Password" required></ion-input>
                 </p>
                 <p>
-                  <input type="submit" [routerLink]="['/admin']" value="Sing In" />
+                  <input type="submit" (click)="signIn()" value="Sing In" />
                 </p>
                 <p>
                   <a href="">Forget Password?</a>

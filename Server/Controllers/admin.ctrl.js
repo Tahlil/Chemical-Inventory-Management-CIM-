@@ -49,6 +49,7 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
+  console.log(Object.keys(req.body));
   // Validate request
   if (incorrectPrimaryInfo(req)) {
     res.status(400).send({
