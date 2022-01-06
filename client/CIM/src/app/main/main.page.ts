@@ -5,6 +5,8 @@ import { AddChemicalModalComponent } from '../modal/add-chemical-modal/add-chemi
 import { RemoveChemicalModalComponent } from '../modal/remove-chemical-modal/remove-chemical-modal.component';
 import { getChemicals } from "../apiServices/chemicalService";
 import { APIs } from '../configs/config';
+import { deleteChemical } from "../apiServices/chemicalService";
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
@@ -43,6 +45,13 @@ export class MainPage implements OnInit {
       componentProps: {chemical: chemical}
     });
     return await modal.present();
+  }
+
+  async deleteChemical(chemical){
+    let response  = await deleteChemical(chemical);
+    if(response.status == 200){
+      this.chemicals = this.chemicals.filter(c => c.casNumber != chemical.casNumber);
+    }
   }
 
   async exportCSV() {

@@ -23,3 +23,7 @@ export function removeChemical(chemical, removeQuantity) {
     quantity: parseFloat(removeQuantity),
   });
 }
+
+export function deleteChemical(chemical) {
+  return axios.post(apiUrls.chemicalRemoveAPI, chemical);
+}

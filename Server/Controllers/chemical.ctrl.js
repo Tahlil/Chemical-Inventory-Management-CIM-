@@ -72,6 +72,25 @@ exports.create = (req, res) => {
     });
 };
 
+exports.remove = (req, res) => {
+  // Validate request
+  if (!req.body.casNumber) {
+    res.status(400).send(getError("Invalid request"));
+    return;
+  }
+
+  Chemical.deleteOne(
+    { casNumber: req.body.casNumber, place: req.body.place },
+    function (err) {
+      if (err) {
+        res.send(getError(err.message || "Error deleting chemical."));
+      } else {
+        res.status(200).send({ error: false });
+      }
+    }
+  );
+};
+
 exports.take = (req, res) => {
   let decrement = -1 * parseInt(req.body.quantity);
   console.log("Decrement: " + decrement);

@@ -3,6 +3,7 @@ const chemicalRouter = require("express").Router();
 
 chemicalRouter
   .post("/chemical/create", ChemicalCtrl.create)
+  .post("/chemical/remove", ChemicalCtrl.remove)
   .post("/chemical/take", ChemicalCtrl.take)
   .post("/chemical/add", ChemicalCtrl.add)
   .get("/chemical/get", ChemicalCtrl.get)
