@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { NewChemicalModalComponent } from '../modal/new-chemical-modal/new-chemical-modal.component';
 import { AddChemicalModalComponent } from '../modal/add-chemical-modal/add-chemical-modal.component';
 import { RemoveChemicalModalComponent } from '../modal/remove-chemical-modal/remove-chemical-modal.component';
+import { AddCsvModalComponent } from '../modal/add-csv-modal/add-csv-modal.component';
 import { getChemicals } from "../apiServices/chemicalService";
 import { APIs } from '../configs/config';
 import { deleteChemical } from "../apiServices/chemicalService";
@@ -19,7 +20,8 @@ export class MainPage implements OnInit {
     this.modals = {
       "new": NewChemicalModalComponent,
       "add": AddChemicalModalComponent,
-      "remove": RemoveChemicalModalComponent
+      "remove": RemoveChemicalModalComponent,
+      "add-csv": AddCsvModalComponent,
     }
     getChemicals().then(res => {
       this.chemicals = res.data;

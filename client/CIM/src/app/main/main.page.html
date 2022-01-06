@@ -21,7 +21,12 @@
 
 <ion-content>
   <div class="container">
-    <ion-button (click)="importCSV()" expand="block" fill="clear" shape="round">
+    <ion-button
+      (click)="openModal('add-csv')"
+      expand="block"
+      fill="clear"
+      shape="round"
+    >
       Import CSV
     </ion-button>
     <ion-button (click)="exportCSV()" expand="block" fill="clear" shape="round">

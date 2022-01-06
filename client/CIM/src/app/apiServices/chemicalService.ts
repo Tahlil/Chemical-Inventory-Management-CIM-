@@ -27,3 +27,7 @@ export function removeChemical(chemical, removeQuantity) {
 export function deleteChemical(chemical) {
   return axios.post(apiUrls.chemicalRemoveAPI, chemical);
 }
+
+export function importChemicals(formData) {
+  return axios.post(apiUrls.chemicalCSVImportAPI, formData, {headers: {'Content-Type': 'multipart/form-data'}});
+}
