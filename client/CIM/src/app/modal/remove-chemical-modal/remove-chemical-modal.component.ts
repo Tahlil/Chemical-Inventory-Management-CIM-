@@ -27,6 +27,7 @@ export class RemoveChemicalModalComponent implements OnInit {
   async removeChemical(){
     let removeQuantity = Math.min(parseFloat(this.quantity), this.chemical.quantity);
     let res = await removeChemical(this.chemical, removeQuantity);
+    console.log(res);
     if(res.status == 200){
       this.chemical.quantity -= removeQuantity;
       await this.modalController.dismiss('Success');

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { newChemical } from 'src/app/apiServices/chemicalService';
 
 @Component({
   selector: 'app-new-chemical-modal',
@@ -50,7 +51,18 @@ export class NewChemicalModalComponent implements OnInit {
 
   async addNewChemical() {
     console.log("Adding new chemical.");
-    console.log(this.name, this.casNumber, this.sds, this.unitType, this.quantity, this.place);
+    let res = await newChemical({
+      name: this.name,
+      casNumber: this.casNumber,
+      sds: this.sds,
+      unitType: this.unitType,
+      quantity: this.quantity,
+      place: this.place
+    });
+    if (res.status == 200) {
+      await this.modalController.dismiss('Success');
+      window.location.reload();
+    }
     await this.modalController.dismiss('Cancel');
   }
 

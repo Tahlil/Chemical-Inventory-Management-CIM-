@@ -31,3 +31,7 @@ export function deleteChemical(chemical) {
 export function importChemicals(formData) {
   return axios.post(apiUrls.chemicalCSVImportAPI, formData, {headers: {'Content-Type': 'multipart/form-data'}});
 }
+
+export function newChemical(chemical) {
+  return axios.post(apiUrls.chemicalCreateAPI, chemical);
+}

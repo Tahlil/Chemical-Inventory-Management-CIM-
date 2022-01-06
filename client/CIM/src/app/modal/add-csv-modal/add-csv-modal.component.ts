@@ -28,8 +28,8 @@ export class AddCsvModalComponent implements OnInit {
     formData.append('file', this.file);
     let res = await importChemicals(formData);
     if (res.status == 200) {
-      window.location.reload();
       await this.modalController.dismiss('Success');
+      window.location.reload();
     }
     await this.modalController.dismiss('Cancel');
   }
