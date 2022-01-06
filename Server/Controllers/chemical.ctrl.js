@@ -28,7 +28,6 @@ function updateChemicalQuantity(req, res, changeValue) {
       if (err) {
         res.send(getError(err.message || "Error updating chemical."));
       } else {
-        console.log(result);
         if (result.n === 1) {
           res.status(200).send({ error: false });
         } else {
