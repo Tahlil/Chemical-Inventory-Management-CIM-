@@ -26,7 +26,7 @@ export class RemoveChemicalModalComponent implements OnInit {
 
   async removeChemical(){
     let api = new APIs();
-    let url = api.chemicalRemoveAPI + `?casNumber=${this.chemical.casNumber}&quantity=${this.quantity}&place=${this.chemical.place}`;
+    let url = api.chemicalTakeAPI + `?casNumber=${this.chemical.casNumber}&quantity=${this.quantity}&place=${this.chemical.place}`;
     window.open(url, '_blank');
     this.chemical.quantity += parseFloat(this.quantity);
     await this.modalController.dismiss('Cancel');

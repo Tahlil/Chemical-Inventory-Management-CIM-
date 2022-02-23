@@ -48,21 +48,15 @@ function createPdf(req, res, changeValue) {
       chemical = chem;
       res.setHeader("Content-Type", "application/pdf");
       pdfDoc.pipe(res);
-      pdfDoc.text(
-        `Chemical:                                                  ${chemical.name}`
-      );
-      pdfDoc.text(
-        `Cas Number:                                                ${chemical.casNumber}`
-      );
-      pdfDoc.text(
-        `Place:                                                     ${chemical.place}`
-      );
-      pdfDoc.text(
-        `Change quantity:                                            ${changeValue} ${chemical.unitType}`
-      );
-      pdfDoc.text(
-        `Current quantity:                                           ${chemical.quantity} ${chemical.unitType}`
-      );
+      pdfDoc.text("Chemical").text(chemical.name, { align: "right" });
+      pdfDoc.text("Cas Number").text(chemical.casNumber, { align: "right" });
+      pdfDoc.text("Place").text(chemical.place, { align: "right" });
+      pdfDoc
+        .text("Change Quantity")
+        .text(changeValue + " " + chemical.unitType, { align: "right" });
+      pdfDoc
+        .text("Current Quantity")
+        .text(chemical.quantity + " " + chemical.unitType, { align: "right" });
 
       pdfDoc.end();
     }
