@@ -16,6 +16,7 @@ const uploadSingle = upload.single("file");
 const csv = require("csvtojson");
 const { compareCsvFields, jsonToCsv } = require("../Utils/csvUtils");
 const fs = require("fs");
+const PDFDocument = require("pdfkit");
 
 function updateChemicalQuantity(req, res, changeValue) {
   // Validate request
@@ -30,12 +31,40 @@ function updateChemicalQuantity(req, res, changeValue) {
       if (err) {
         res.send(getError(err.message || "Error updating chemical."));
       } else {
-        if (result.n === 1) {
-          res.status(200).send({ error: false });
-        } else {
+        if (result.n !== 1) {
           res.send(getError("Chemical not found."));
         }
       }
+    }
+  );
+}
+
+function createPdf(req, res, changeValue) {
+  const pdfDoc = new PDFDocument();
+  let chemical = null;
+  Chemical.findOne(
+    { casNumber: req.query.casNumber, place: req.query.place },
+    (err, chem) => {
+      chemical = chem;
+      res.setHeader("Content-Type", "application/pdf");
+      pdfDoc.pipe(res);
+      pdfDoc.text(
+        `Chemical:                                                  ${chemical.name}`
+      );
+      pdfDoc.text(
+        `Cas Number:                                                ${chemical.casNumber}`
+      );
+      pdfDoc.text(
+        `Place:                                                     ${chemical.place}`
+      );
+      pdfDoc.text(
+        `Change quantity:                                            ${changeValue} ${chemical.unitType}`
+      );
+      pdfDoc.text(
+        `Current quantity:                                           ${chemical.quantity} ${chemical.unitType}`
+      );
+
+      pdfDoc.end();
     }
   );
 }
@@ -98,11 +127,13 @@ exports.take = (req, res) => {
   console.log("Decrement: " + decrement);
 
   updateChemicalQuantity(req, res, decrement);
+  createPdf(req, res, decrement);
 };
 
 exports.add = (req, res) => {
   let increment = parseInt(req.query.quantity);
   updateChemicalQuantity(req, res, increment);
+  createPdf(req, res, increment);
 };
 
 exports.get = (req, res) => {

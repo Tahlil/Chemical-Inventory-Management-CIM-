@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { removeChemical } from 'src/app/apiServices/chemicalService';
-
+import { APIs } from '../../configs/config';
 @Component({
   selector: 'app-remove-chemical-modal',
   templateUrl: './remove-chemical-modal.component.html',
@@ -25,14 +25,10 @@ export class RemoveChemicalModalComponent implements OnInit {
   }
 
   async removeChemical(){
-    let removeQuantity = Math.min(parseFloat(this.quantity), this.chemical.quantity);
-    let res = await removeChemical(this.chemical, removeQuantity);
-    console.log(res);
-    if(res.status == 200){
-      this.chemical.quantity -= removeQuantity;
-      await this.modalController.dismiss('Success');
-    }
-
+    let api = new APIs();
+    let url = api.chemicalRemoveAPI + `?casNumber=${this.chemical.casNumber}&quantity=${this.quantity}&place=${this.chemical.place}`;
+    window.open(url, '_blank');
+    this.chemical.quantity += parseFloat(this.quantity);
     await this.modalController.dismiss('Cancel');
   }
 
