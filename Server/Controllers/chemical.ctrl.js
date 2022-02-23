@@ -1,6 +1,8 @@
 const Chemical = require("../Models/models.index").chemical;
 const incorrectPrimaryInfo = (req) =>
   !req.body.casNumber || !req.body.quantity || !req.body.place;
+const incorrectPrimaryInfoQuery = (req) =>
+  !req.query.casNumber || !req.query.place || !req.query.quantity;
 const incorrectSecondaryInfo = (req) =>
   !req.body.name || !req.body.sds || !req.body.unitType;
 const getError = (errMessage) => ({
@@ -17,12 +19,12 @@ const fs = require("fs");
 
 function updateChemicalQuantity(req, res, changeValue) {
   // Validate request
-  if (incorrectPrimaryInfo(req)) {
+  if (incorrectPrimaryInfoQuery(req)) {
     res.status(400).send(getError("Invalid request"));
     return;
   }
   Chemical.updateOne(
-    { casNumber: req.body.casNumber, place: req.body.place },
+    { casNumber: req.query.casNumber, place: req.query.place },
     { $inc: { quantity: changeValue } },
     function (err, result) {
       if (err) {
@@ -92,14 +94,14 @@ exports.remove = (req, res) => {
 };
 
 exports.take = (req, res) => {
-  let decrement = -1 * parseInt(req.body.quantity);
+  let decrement = -1 * parseInt(req.query.quantity);
   console.log("Decrement: " + decrement);
 
   updateChemicalQuantity(req, res, decrement);
 };
 
 exports.add = (req, res) => {
-  let increment = parseInt(req.body.quantity);
+  let increment = parseInt(req.query.quantity);
   updateChemicalQuantity(req, res, increment);
 };
 
