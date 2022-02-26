@@ -16,6 +16,8 @@ import { deleteChemical } from "../apiServices/chemicalService";
 export class MainPage implements OnInit {
   modals;
   chemicals;
+  filteredChemicals: any[];
+  searchText: string;
   constructor(public modalController: ModalController) {
     this.modals = {
       "new": NewChemicalModalComponent,
@@ -25,9 +27,11 @@ export class MainPage implements OnInit {
     }
     getChemicals().then(res => {
       this.chemicals = res.data;
+      this.filteredChemicals = res.data;
     }).catch(err => {
       console.log(err);
       this.chemicals = [];
+      this.filteredChemicals = [];
     });
   }
 
@@ -53,7 +57,24 @@ export class MainPage implements OnInit {
     let response  = await deleteChemical(chemical);
     if(response.status == 200){
       this.chemicals = this.chemicals.filter(c => c.casNumber != chemical.casNumber);
+      let searchText = this.searchText;
+      if (searchText == ""){
+        this.filteredChemicals = this.chemicals;
+      }
+      this.filteredChemicals = this.chemicals.filter(chemical => {
+        return chemical.casNumber.includes(searchText) || chemical.name.includes(searchText) || chemical.place.includes(searchText);
+      });
     }
+  }
+
+  search(event: any){
+    let searchText = event.detail.value;
+    if (searchText == ""){
+      this.filteredChemicals = this.chemicals;
+    }
+    this.filteredChemicals = this.chemicals.filter(chemical => {
+      return chemical.casNumber.includes(searchText) || chemical.name.includes(searchText) || chemical.place.includes(searchText);
+    });
   }
 
   async exportCSV() {

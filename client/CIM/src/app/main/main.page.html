@@ -21,6 +21,16 @@
 
 <ion-content>
   <div class="container">
+    <ion-input
+      type="text"
+      class="form-control"
+      id="search-text"
+      aria-describedby="search-text"
+      [(ngModel)]="searchText"
+      placeholder="Enter text to search"
+      (ionChange)="search($event)"
+      autofocus
+    ></ion-input>
     <ion-button
       (click)="openModal('add-csv')"
       expand="block"
@@ -49,7 +59,7 @@
           </th>
           <th></th>
         </tr>
-        <tr *ngFor="let chemical of this.chemicals">
+        <tr *ngFor="let chemical of this.filteredChemicals">
           <td data-th="Place">{{chemical.place}}</td>
           <td data-th="CAS Number">{{chemical.casNumber}}</td>
           <td data-th="Chemical Name">{{chemical.name}}</td>
