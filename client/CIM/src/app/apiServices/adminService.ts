@@ -13,3 +13,15 @@ export function adminSignIn(username, password) {
 export function getUnapproved() {
   return axios.get(apiUrls.getUnapprovedAPI);
 }
+
+export function approveOne(unapproved: any) {
+  return axios.post(apiUrls.adminApproveAPI, {
+    username: unapproved.username,
+  });
+}
+
+export function unapproveOne(unapproved: any) {
+  return axios.post(apiUrls.adminUnapproveAPI, {
+    username: unapproved.username,
+  });
+}

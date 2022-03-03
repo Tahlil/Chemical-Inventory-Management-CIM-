@@ -3,7 +3,7 @@ import { AuthServiceService } from "../services/auth-service.service";
 import * as $ from 'jquery';
 import * as d3 from "d3";
 import { TimelineMax } from "gsap";
-import { getUnapproved } from '../apiServices/adminService';
+import { getUnapproved, approveOne, unapproveOne } from '../apiServices/adminService';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
@@ -199,6 +199,20 @@ export class AdminPage implements OnInit, AfterViewInit  {
       }
     } catch (error) {
       this.unapproved = [];
+    }
+  }
+
+  async approve(uapproved: any) {
+    let response = await approveOne(uapproved);
+    if (response.status === 200) {
+      await this.getAllUnapproved();
+    }
+  }
+
+  async unapprove(uapproved: any) {
+    let response = await unapproveOne(uapproved);
+    if (response.status === 200) {
+      await this.getAllUnapproved();
     }
   }
 

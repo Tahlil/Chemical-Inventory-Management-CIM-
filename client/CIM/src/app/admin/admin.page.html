@@ -56,8 +56,8 @@
               <div>Position: {{uapproved.position}}</div>
             </div>
             <div class="foot">
-              <div class="approve-btn">A</div>
-              <div class="reject-btn">R</div>
+              <div class="approve-btn" (click)="approve(uapproved)">A</div>
+              <div class="reject-btn" (click)="unapprove(uapproved)">R</div>
             </div>
           </div>
           <!--SVG ELEMENT BEHIND IT-->
