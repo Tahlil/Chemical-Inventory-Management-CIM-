@@ -120,7 +120,7 @@ exports.disapprove = (req, res) => {
 
 exports.getAllUnapproved = (req, res) => {
   console.log("Getting all unapproved.");
-  ApproveReq.find({})
+  ApproveReq.find({ isApproved: false })
     .then((data) => {
       res.send(data);
     })

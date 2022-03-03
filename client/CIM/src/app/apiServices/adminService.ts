@@ -9,3 +9,7 @@ export function adminSignIn(username, password) {
       password: password,
     });
   }
+
+export function getUnapproved() {
+  return axios.get(apiUrls.getUnapprovedAPI);
+}

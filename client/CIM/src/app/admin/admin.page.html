@@ -46,12 +46,14 @@
       </ion-col>
     </ion-row>
     <ion-row>
-        <div *ngFor="let item of [1,2,3,4,5,6,6,6]" class="plane-container">
+        <div *ngFor="let uapproved of this.unapproved" class="plane-container">
           <!--THIS IS WHERE MY HTML ELEMENTS GO-->
           <div class="wrapper">
-            <div class="head">Approval Name is longer than this can hold</div>
+            <div class="head">{{uapproved.username}}</div>
             <div class="body">
-              Since launching Microsoft Flow last year, we’ve heard from many of you about the need for Flow.
+              <div>First Name: {{uapproved.firstName}}</div>
+              <div>Last Name: {{uapproved.lastName}}</div>
+              <div>Position: {{uapproved.position}}</div>
             </div>
             <div class="foot">
               <div class="approve-btn">A</div>
