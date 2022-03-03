@@ -53,7 +53,7 @@ export class MainPage implements OnInit {
     return await modal.present();
   }
 
-  async deleteChemical(chemical){
+  async deleteOneChemical(chemical){
     let response  = await deleteChemical(chemical);
     if(response.status == 200){
       this.chemicals = this.chemicals.filter(c => c.casNumber != chemical.casNumber);

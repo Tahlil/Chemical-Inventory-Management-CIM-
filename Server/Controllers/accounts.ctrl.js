@@ -37,6 +37,7 @@ exports.register = (req, res) => {
   const userType = req.body.userType;
   // Create a user
   let user,
+    approvalRequest,
     userInfo = {
       username: req.body.username,
       firstName: req.body.firstName,
@@ -45,9 +46,9 @@ exports.register = (req, res) => {
       passwordHash: req.body.password,
     };
 
-  User = getUser(userType);
+  let User = getUser(userType);
 
-  bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
+  bcrypt.hash(req.body.password, saltRounds, async (err, hash) => {
     user = new User({
       username: req.body.username,
       firstName: req.body.firstName,
@@ -55,24 +56,30 @@ exports.register = (req, res) => {
       position: req.body.position,
       passwordHash: hash,
     });
+    approvalRequest = new ApproveReq({
+      userType: userType,
+      username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      position: req.body.position,
+      passwordHash: hash,
+      isApproved: false,
+    });
+
     // Save user in the database
-    user
-      .save(user)
-      .then((data) => {
-        console.log("Registered: " + userType);
-        res.status(200).send({
-          error: false,
-        });
-      })
-      .catch((err) => {
-        res
-          .status(500)
-          .send(
-            getError(
-              err.message || "Some error occurred while registering user."
-            )
-          );
+    try {
+      let data = await user.save(user);
+      let _ = await approvalRequest.save(approvalRequest);
+      res.status(200).send({
+        error: false,
       });
+    } catch (err) {
+      res
+        .status(500)
+        .send(
+          getError(err.message || "Some error occurred while registering user.")
+        );
+    }
   });
 };
 
