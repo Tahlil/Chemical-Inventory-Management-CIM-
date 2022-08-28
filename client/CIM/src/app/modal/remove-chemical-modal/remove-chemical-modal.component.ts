@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-
+import { removeChemical } from 'src/app/apiServices/chemicalService';
+import { APIs } from '../../configs/config';
 @Component({
   selector: 'app-remove-chemical-modal',
   templateUrl: './remove-chemical-modal.component.html',
@@ -8,7 +9,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class RemoveChemicalModalComponent implements OnInit {
 
-  quantity: number;
+  quantity: string;
 
   @Input('chemical') chemical;
   constructor(public modalController: ModalController) { }
@@ -24,8 +25,10 @@ export class RemoveChemicalModalComponent implements OnInit {
   }
 
   async removeChemical(){
-    console.log(this.quantity);
-    
+    let api = new APIs();
+    let url = api.chemicalTakeAPI + `?casNumber=${this.chemical.casNumber}&quantity=${this.quantity}&place=${this.chemical.place}`;
+    window.open(url, '_blank');
+    this.chemical.quantity += parseFloat(this.quantity);
     await this.modalController.dismiss('Cancel');
   }
 

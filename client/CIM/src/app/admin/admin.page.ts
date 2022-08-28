@@ -3,6 +3,7 @@ import { AuthServiceService } from "../services/auth-service.service";
 import * as $ from 'jquery';
 import * as d3 from "d3";
 import { TimelineMax } from "gsap";
+import { getUnapproved, approveOne, unapproveOne } from '../apiServices/adminService';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
@@ -11,7 +12,7 @@ import { TimelineMax } from "gsap";
 export class AdminPage implements OnInit, AfterViewInit  {
   unapproved:[];
   constructor(authServiceService:AuthServiceService) { 
-    this.getUnapproved()
+    this.getAllUnapproved()
   }
 
   ngAfterViewInit() {
@@ -190,13 +191,29 @@ export class AdminPage implements OnInit, AfterViewInit  {
    
   }
 
-  getUnapproved(){
-    // this.AuthServiceService.getApprovalRequest().subscribe(data =>{
-    //   console.log("Unapproved: ");
-      
-    //   console.log(data);
-      
-    // });    
+  async getAllUnapproved(){
+    try {
+      let response = await getUnapproved();
+      if (response.status === 200) {
+        this.unapproved = response.data;
+      }
+    } catch (error) {
+      this.unapproved = [];
+    }
+  }
+
+  async approve(uapproved: any) {
+    let response = await approveOne(uapproved);
+    if (response.status === 200) {
+      await this.getAllUnapproved();
+    }
+  }
+
+  async unapprove(uapproved: any) {
+    let response = await unapproveOne(uapproved);
+    if (response.status === 200) {
+      await this.getAllUnapproved();
+    }
   }
 
 }
